@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChDPU - Pro Exam System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="main-body">
+
+    <!-- Navbar -->
+    <nav class="global-nav">
+        <div class="logo-area">
+            <div class="logo-icon">A</div>
+            <span class="brand-text">ADHAM'S DEV <span class="badge">PRO</span></span>
+        </div>
+        <div class="nav-right">
+            <div class="live-score-mini">
+                <span class="text-accent">✓ <b id="stat-correct">0</b></span>
+                <span class="text-error">✕ <b id="stat-wrong">0</b></span>
+            </div>
+            <button onclick="toggleTheme()" class="theme-btn">🌙</button>
+        </div>
+    </nav>
+
+    <!-- 1. Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="hero-card glass-effect">
+            <div class="hero-badge">2025-2026 O'quv yili</div>
+            <h1>ChDPU Yakuniy Imtihon<br><span class="highlight">Test Platformasi</span></h1>
+            <p>San'atshunoslik fakulteti talabalari uchun maxsus ishlab chiqilgan professional tayyorgarlik tizimi.</p>
+            
+            <div class="author-info">
+                <span>Dastur muallifi: <b>Adhamjon Atamuratov</b></span>
+            </div>
+            
+            <button class="btn-main glow-effect" onclick="enterDashboard()">
+                Boshlash <span class="arrow">→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. Dashboard Screen -->
+    <div id="dashboard-screen" class="screen hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Yo'nalishni tanlang</h2>
+                <p>Bilimingizni sinash uchun fanni yoki maxsus rejimni belgilang</p>
+            </div>
+            
+            <div class="vertical-menu">
+                <button class="premium-btn" onclick="startSubjectTest('musiqa_nazariyasi')">
+                    <div class="btn-content">
+                        <div class="icon-box primary-bg">🎵</div>
+                        <div class="text-box"><span class="title">Musiqa nazariyasi</span></div>
+                    </div>
+                    <div class="go-icon">❯</div>
+                </button>
+
+                <button class="premium-btn" onclick="startSubjectTest('cholgu_ijrochiligi')">
+                    <div class="btn-content">
+                        <div class="icon-box warning-bg">🎸</div>
+                        <div class="text-box"><span class="title">Cholg'u ijrochiligi</span></div>
+                    </div>
+                    <div class="go-icon">❯</div>
+                </button>
+
+                <button class="premium-btn" onclick="startSubjectTest('vokal_ijrochiligi')">
+                    <div class="btn-content">
+                        <div class="icon-box info-bg">🎤</div>
+                        <div class="text-box"><span class="title">Vokal ijrochiligi</span></div>
+                    </div>
+                    <div class="go-icon">❯</div>
+                </button>
+
+                <button class="premium-btn" onclick="startSubjectTest('metodika_repertuar')">
+                    <div class="btn-content">
+                        <div class="icon-box success-bg">📚</div>
+                        <div class="text-box"><span class="title">Metodika va repertuar</span></div>
+                    </div>
+                    <div class="go-icon">❯</div>
+                </button>
+
+                <button class="premium-btn special-btn" onclick="startRandomAllTest()">
+                    <div class="btn-content">
+                        <div class="icon-box dark-bg">🔥</div>
+                        <div class="text-box"><span class="title">786...800 Aralash</span><span class="subtitle">Smart Random Mode</span></div>
+                    </div>
+                    <div class="go-icon">❯</div>
+                </button>
+
+                <button class="premium-btn" onclick="toggleChapters()">
+                    <div class="btn-content">
+                        <div class="icon-box secondary-bg">📋</div>
+                        <div class="text-box"><span class="title">Barcha testlar (1-800)</span></div>
+                    </div>
+                    <div class="go-icon">⬇</div>
+                </button>
+
+                <div id="chapters-grid" class="hidden chapters-grid-ui">
+                    <!-- JS orqali to'ldiriladi -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Test Screen -->
+    <div id="test-screen" class="screen hidden">
+        <div class="progress-container"><div id="progress-bar"></div></div>
+        
+        <div class="container test-wrapper">
+            <div class="test-sidebar glass-panel">
+                <div class="sidebar-header">
+                    <h3>Navigatsiya</h3>
+                    <button class="exit-mini" onclick="backToDashboard()">Chiqish</button>
+                </div>
+                <div class="indicator-grid" id="indicator-map"></div>
+            </div>
+
+            <div class="main-test-area">
+                <div id="active-question-area" class="q-card floating-card">
+                    <!-- Savollar shu yerga tushadi -->
+                </div>
+                <div class="navigation-premium">
+                    <button class="nav-btn premium-nav" onclick="moveStep(-1)">← Oldingi</button>
+                    <button class="nav-btn premium-finish hidden" id="finish-btn" onclick="forceFinish()">Yakunlash ✓</button>
+                    <button class="nav-btn premium-nav" onclick="moveStep(1)">Keyingi →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
